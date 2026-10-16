@@ -2,635 +2,585 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#b51226">
-<meta name="description" content="KANO LIFE — Your Life. Your City. Your Story. A browser-based Kano life simulator.">
-<title>KANO LIFE — Your Life, Your City</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>KANO LIFE — My Home</title>
+
 <style>
-:root {
-  --red:#b51226;
-  --darkred:#790d1a;
-  --white:#fff;
-  --bg:#f4f4f5;
-  --card:#fff;
-  --text:#202124;
-  --muted:#747474;
-  --green:#16834a;
-  --border:#e6e6e8;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+  color: #222;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+header {
+  background: #b51226;
+  color: white;
+  padding: 18px;
+  text-align: center;
 }
-button,input,select{font:inherit}
-button{cursor:pointer;touch-action:manipulation}
-.top{
-  background:linear-gradient(135deg,var(--red),var(--darkred));
-  color:white;padding:18px 16px 20px;
-  border-radius:0 0 25px 25px;
-  box-shadow:0 5px 18px #790d1a30;
+
+header h1 { margin: 0 0 6px; }
+header p { margin: 0; font-size: 12px; }
+
+.container {
+  max-width: 750px;
+  margin: auto;
+  padding: 15px;
 }
-.brand{display:flex;align-items:center;gap:11px}
-.logo{
-  width:49px;height:49px;border-radius:15px;background:white;
-  color:var(--red);display:grid;place-items:center;font-size:25px;
-  font-weight:1000;border:2px solid #ffffff88;
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 12px #00000012;
 }
-h1{font-size:24px;margin:0;font-weight:950;letter-spacing:1px}
-.tag{font-size:11px;opacity:.85;margin-top:3px}
-.headerline{display:flex;justify-content:space-between;align-items:center}
-.clock{font-size:12px;text-align:right}
-.clock strong{display:block;font-size:17px}
-.moneycard{
-  margin-top:18px;background:#ffffff18;border:1px solid #ffffff40;
-  padding:15px;border-radius:17px;
+
+h2 { margin-top: 0; font-size: 19px; }
+
+/* THE HOUSE YARD */
+.yard {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 13px;
+  border: 3px solid #bba27d;
+  background: linear-gradient(
+    to bottom,
+    #a8d8f0 0%,
+    #d8effa 43%,
+    #77ad50 43%,
+    #4b873c 100%
+  );
 }
-.small{font-size:11px;opacity:.85}
-.cash{font-size:29px;font-weight:900;margin:4px 0}
-.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.stat{background:#ffffff16;border-radius:12px;padding:10px 5px;text-align:center}
-.stat .emoji{font-size:19px}
-.stat strong{display:block;font-size:13px;margin-top:5px}
-.stat span{font-size:10px;opacity:.85}
-.wrap{max-width:900px;margin:auto;padding:14px 13px 105px}
-.notice{
-  padding:11px 13px;border-radius:12px;background:#fff3f3;
-  color:var(--darkred);font-size:12px;margin-bottom:13px;border:1px solid #f0d3d7;
+
+/* SUN */
+.sun {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: #ffdc50;
+  border-radius: 50%;
+  top: 18px;
+  right: 28px;
+  box-shadow: 0 0 25px #ffdf75;
 }
-.sectiontitle{font-size:17px;font-weight:850;margin:20px 0 11px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:17px;padding:14px;min-width:0;
-  box-shadow:0 3px 12px #00000006;
+
+/* CLOUDS */
+.cloud {
+  position: absolute;
+  top: 37px;
+  left: 25px;
+  font-size: 35px;
 }
-.card .icon{font-size:29px}
-.card h3{font-size:14px;margin:9px 0 5px}
-.card p{font-size:11px;color:var(--muted);line-height:1.5;margin:0 0 12px}
-.btn{
-  border:0;border-radius:10px;background:var(--red);color:white;
-  padding:11px 10px;font-size:12px;font-weight:750;width:100%;
+
+/* HOUSE FOUNDATION */
+.foundation {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 24px;
+  background: #aaa39b;
+  border: 2px solid #77716a;
 }
-.btn.secondary{background:#f3e7e9;color:var(--darkred)}
-.btn.green{background:var(--green)}
-.btn.dark{background:#28282c}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.row .btn{width:auto;flex-shrink:0}
-.panel{background:white;border:1px solid var(--border);border-radius:16px;padding:15px}
-.progress{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:8px 0 13px}
-.progress div{height:100%;background:var(--red);transition:width .3s}
-.map{
-  min-height:240px;position:relative;overflow:hidden;border-radius:17px;
-  background-color:#e8eadb;
-  background-image:linear-gradient(30deg,transparent 46%,#fff 47%,#fff 51%,transparent 52%),linear-gradient(120deg,transparent 45%,#d0d7c4 46%,#d0d7c4 51%,transparent 52%);
-  background-size:75px 75px;
-  border:1px solid #d8dccb;
+
+/* HOUSE WALLS */
+.house {
+  position: absolute;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74%;
+  height: 165px;
+  background: #f2dfbd;
+  border: 3px solid #9e7551;
+  transition: all .3s;
 }
-.map::before{
-  content:"";position:absolute;left:0;right:0;top:48%;
-  height:15px;background:#d7c6a2;border:3px solid #f8f4e8;
-  transform:rotate(-15deg);
+
+/* ROOF */
+.roof {
+  position: absolute;
+  bottom: 237px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  height: 75px;
+  background: #b51226;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  border: none;
+  transition: all .3s;
 }
-.mapspots{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-.spot{
-  border:1px solid #ffffffbd;border-radius:12px;background:#ffffffed;
-  padding:11px 7px;text-align:center;font-size:11px;font-weight:800;
+
+/* ROOF DETAIL */
+.roof-line {
+  position: absolute;
+  top: 5px;
+  left: 10%;
+  width: 80%;
+  height: 60px;
+  border-top: 4px solid #7b101d;
+  transform: rotate(-28deg);
 }
-.spot span{display:block;font-size:22px;margin-bottom:4px}
-.houseart{
-  border-radius:14px;background:linear-gradient(#f5d9b6 0 54%,#c9a477 54%);
-  min-height:115px;display:grid;place-items:center;font-size:55px;
-  border:1px solid #ead7c4;
+
+/* WINDOWS */
+.window {
+  position: absolute;
+  top: 35px;
+  width: 48px;
+  height: 49px;
+  background: #83d8f3;
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 2px #8c6745;
 }
-.tabs{
-  position:fixed;bottom:0;left:0;right:0;background:#fff;
-  border-top:1px solid var(--border);display:flex;justify-content:space-around;
-  padding:9px 4px max(9px,env(safe-area-inset-bottom));z-index:5;
+
+.window.left { left: 12%; }
+.window.right { right: 12%; }
+
+.window::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: white;
+  left: 50%;
 }
-.tab{
-  background:none;border:0;color:#777;display:flex;flex-direction:column;
-  align-items:center;gap:4px;font-size:10px;min-width:50px;
+
+.window::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: white;
+  top: 50%;
+  left: 0;
 }
-.tab span{font-size:20px}
-.tab.active{color:var(--red);font-weight:850}
-.page{display:none}
-.page.active{display:block}
-.log{font-size:12px;line-height:1.7;color:#555}
-.log div{border-bottom:1px solid #eee;padding:7px 0}
-input,select{
-  width:100%;border:1px solid #ddd;padding:12px;border-radius:10px;
-  margin:5px 0 12px;background:white;color:#222;
+
+/* FRONT DOOR */
+.door {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 53px;
+  height: 87px;
+  background: #754321;
+  border: 4px solid #573219;
+  border-radius: 5px 5px 0 0;
 }
-footer{text-align:center;font-size:10px;color:#888;padding:25px 5px}
-.toast{
-  position:fixed;z-index:10;top:15px;left:50%;transform:translateX(-50%);
-  background:#252525;color:white;padding:12px 17px;border-radius:12px;
-  width:max-content;max-width:90%;font-size:12px;display:none;
-  box-shadow:0 5px 25px #0003;
+
+.knob {
+  position: absolute;
+  top: 45px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  background: #ffd65a;
+  border-radius: 50%;
 }
-@media(min-width:650px){
- .wrap{padding-top:22px}
- .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .top{padding-left:max(20px,calc((100% - 870px)/2));padding-right:max(20px,calc((100% - 870px)/2))}
+
+/* WALKWAY */
+.path {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 90px;
+  background: #c8b9a0;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+
+/* GRASS DECORATION */
+.tree {
+  position: absolute;
+  bottom: 48px;
+  left: 8px;
+  font-size: 46px;
+}
+
+.tree.right {
+  left: auto;
+  right: 8px;
+}
+
+.fence {
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  width: 100%;
+  height: 27px;
+  border-top: 5px solid #e4d0ad;
+  border-bottom: 5px solid #e4d0ad;
+  background: repeating-linear-gradient(
+    90deg,
+    #d6bd92 0 9px,
+    transparent 9px 22px
+  );
+}
+
+.house-label {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  background: #ffffffed;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: #fff1f2;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.stat strong {
+  display: block;
+  color: #b51226;
+  margin-top: 5px;
+}
+
+button {
+  width: 100%;
+  border: none;
+  padding: 13px;
+  margin-top: 9px;
+  border-radius: 10px;
+  color: white;
+  background: #b51226;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+button:disabled {
+  background: #aaa;
+}
+
+#message {
+  font-size: 13px;
+  color: #16733c;
+  margin-top: 10px;
+  min-height: 18px;
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  font-size: 11px;
+  padding: 20px 5px;
+}
+
+/* HOUSE UPGRADE APPEARANCE */
+.yard.level2 .house {
+  background: #fff4df;
+  height: 180px;
+}
+
+.yard.level2 .roof {
+  background: #8f1724;
+}
+
+.yard.level3 .house {
+  width: 80%;
+  height: 190px;
+  background: #eee9e1;
+}
+
+.yard.level3 .roof {
+  width: 94%;
+  height: 90px;
+  background: #373737;
+}
+
+.yard.level4 .house {
+  width: 84%;
+  height: 200px;
+  background: #fff;
+  border-color: #d2b06c;
+}
+
+.yard.level4 .roof {
+  width: 98%;
+  height: 100px;
+  background: #b51226;
+}
+
+.yard.level5 .house {
+  width: 85%;
+  height: 205px;
+  background: #fff;
+  border: 4px solid #e0bc69;
+}
+
+.yard.level5 .roof {
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(90deg, #8c101e, #dc3347);
+}
+
+@media(max-width:380px) {
+  .yard { height: 310px; }
+  .house { height: 140px; }
+  .foundation { bottom: 52px; }
+  .roof { bottom: 212px; height: 65px; }
 }
 </style>
 </head>
+
 <body>
-<div class="toast" id="toast"></div>
-<header class="top">
-  <div class="headerline">
-    <div class="brand">
-      <div class="logo">K</div>
-      <div>
-        <h1>KANO LIFE</h1>
-        <div class="tag">YOUR LIFE. YOUR CITY. YOUR STORY.</div>
-      </div>
-    </div>
-    <div class="clock">
-      KANO TIME
-      <strong id="clock">--:--:--</strong>
-      <div id="date"></div>
-    </div>
-  </div>
-  <div class="moneycard">
-    <div class="small">YOUR WALLET</div>
-    <div class="cash" id="cash">₦2,000,000</div>
-    <div class="row">
-      <div class="small" id="playerLabel">New resident · Kano, Nigeria</div>
-      <div class="small" id="level">LEVEL 1</div>
-    </div>
-  </div>
-  <div class="statgrid">
-    <div class="stat"><div class="emoji">⚡</div><strong id="energy">100%</strong><span>Energy</span></div>
-    <div class="stat"><div class="emoji">🍲</div><strong id="hunger">100%</strong><span>Fullness</span></div>
-    <div class="stat"><div class="emoji">😊</div><strong id="mood">100%</strong><span>Mood</span></div>
-    <div class="stat"><div class="emoji">❤️</div><strong id="health">100%</strong><span>Health</span></div>
-  </div>
+
+<header>
+  <h1>🔴 KANO LIFE</h1>
+  <p>Your Life. Your City. Your Story.</p>
 </header>
-<main class="wrap">
-  <div class="notice" id="notice">🏙️ Welcome to Kano! Build your future, earn money and explore your city.</div>
-  <section class="page active" id="home">
-    <div class="sectiontitle">🏠 Your Life</div>
-    <div class="panel">
-      <div class="row">
-        <div>
-          <div class="small" style="color:#777">CURRENT RESIDENCE</div>
-          <h3 id="homeName" style="margin:6px 0">Family Compound</h3>
-          <div id="homeDesc" style="font-size:12px;color:#777">A modest place to begin your journey.</div>
+
+<main class="container">
+
+  <section class="card">
+    <h2>🏡 My House</h2>
+    <p>Your home in Kano. Upgrade it to unlock a better-looking residence.</p>
+
+    <div class="yard" id="yard">
+
+      <div class="sun"></div>
+      <div class="cloud">☁️</div>
+
+      <div class="tree">🌳</div>
+      <div class="tree right">🌴</div>
+
+      <div class="path"></div>
+
+      <div class="roof">
+        <div class="roof-line"></div>
+      </div>
+
+      <div class="house">
+        <div class="window left"></div>
+        <div class="window right"></div>
+        <div class="door">
+          <div class="knob"></div>
         </div>
-        <div style="font-size:42px" id="homeIcon">🏘️</div>
       </div>
-      <div class="progress"><div id="homeProgress" style="width:10%"></div></div>
-      <div class="row">
-        <span style="font-size:11px;color:#777" id="homeLevel">Home level 1</span>
-        <button class="btn" style="width:auto" onclick="upgradeHome()">Upgrade home</button>
+
+      <div class="foundation"></div>
+
+      <div class="fence"></div>
+
+      <div class="house-label" id="houseLabel">
+        MY FAMILY HOUSE
+      </div>
+
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>💰 My Finances</h2>
+
+    <div class="stats">
+      <div class="stat">
+        Available money
+        <strong id="cash">₦2,000,000</strong>
+      </div>
+
+      <div class="stat">
+        House level
+        <strong id="level">Level 1 / 5</strong>
       </div>
     </div>
-    <div class="sectiontitle">⚡ Quick Actions</div>
-    <div class="grid">
-      <div class="card"><div class="icon">💼</div><h3>Find Work</h3><p>Earn money and gain experience.</p><button class="btn" onclick="go('jobs')">View jobs</button></div>
-      <div class="card"><div class="icon">🍛</div><h3>Eat Food</h3><p>Restore your fullness and energy.</p><button class="btn" onclick="go('market')">Visit market</button></div>
-      <div class="card"><div class="icon">🗺️</div><h3>Explore Kano</h3><p>Visit different places in the city.</p><button class="btn" onclick="go('city')">Explore city</button></div>
-      <div class="card"><div class="icon">🚙</div><h3>Get a Vehicle</h3><p>Purchase transport for your journey.</p><button class="btn" onclick="go('garage')">Visit garage</button></div>
-    </div>
-    <div class="sectiontitle">📜 Recent Activities</div>
-    <div class="panel log" id="activity"><div>Welcome to KANO LIFE!</div></div>
+
+    <h2 style="margin-top:20px">🔨 Upgrade My House</h2>
+
+    <p id="description">
+      Level 1: A family house with a yard.
+    </p>
+
+    <button onclick="upgradeHouse()" id="upgradeButton">
+      Upgrade House — ₦100,000
+    </button>
+
+    <button onclick="saveGame()" style="background:#333">
+      💾 Save My House
+    </button>
+
+    <button onclick="loadGame()" style="background:#555">
+      📂 Load Saved House
+    </button>
+
+    <div id="message"></div>
   </section>
-  <section class="page" id="jobs">
-    <div class="sectiontitle">💼 Careers & Jobs</div>
-    <div class="notice">Work costs energy. Keep yourself fed and rested.</div>
-    <div class="grid" id="jobList"></div>
-    <div class="sectiontitle">Your Career</div>
-    <div class="panel">
-      <div class="row"><span>Experience</span><strong id="xp">0 XP</strong></div>
-      <div class="progress"><div id="xpBar" style="width:0%"></div></div>
-      <div style="font-size:12px;color:#777" id="careerText">Complete jobs to level up.</div>
-    </div>
-  </section>
-  <section class="page" id="house">
-    <div class="sectiontitle">🏠 Real Estate</div>
-    <div class="houseart" id="houseArt">🏘️</div>
-    <div class="panel" style="margin-top:12px">
-      <h3 id="propertyTitle">Family Compound</h3>
-      <p style="font-size:12px;color:#777">Buy a better home when you can afford it. Your residence affects your lifestyle.</p>
-      <div id="propertyList"></div>
-    </div>
-    <div class="sectiontitle">🏗️ Home Improvements</div>
-    <div class="grid" id="upgradeList"></div>
-  </section>
-  <section class="page" id="market">
-    <div class="sectiontitle">🛒 Kano Market</div>
-    <div class="notice">Buy food, restore energy and take care of your health.</div>
-    <div class="grid" id="foodList"></div>
-  </section>
-  <section class="page" id="garage">
-    <div class="sectiontitle">🚗 Vehicles & Garage</div>
-    <div class="grid" id="vehicleList"></div>
-    <div class="sectiontitle">Your Garage</div>
-    <div class="panel" id="myVehicles">You haven't bought a vehicle yet.</div>
-  </section>
-  <section class="page" id="city">
-    <div class="sectiontitle">🗺️ Explore Kano</div>
-    <div class="notice">Choose a destination. Travel costs a little energy.</div>
-    <div class="map"><div class="mapspots" id="mapSpots"></div></div>
-    <div class="sectiontitle">Destinations</div>
-    <div class="grid" id="locationList"></div>
-  </section>
-  <section class="page" id="social">
-    <div class="sectiontitle">👥 Social Life</div>
-    <div class="grid">
-      <div class="card"><div class="icon">🎉</div><h3>Owambe Party</h3><p>Enjoy yourself and improve your mood.</p><button class="btn" onclick="party()">Attend party · ₦15,000</button></div>
-      <div class="card"><div class="icon">🫖</div><h3>Tea & Snacks</h3><p>Relax and regain a little energy.</p><button class="btn" onclick="relax()">Relax · ₦2,000</button></div>
-      <div class="card"><div class="icon">🗳️</div><h3>Community</h3><p>Take part in your local community.</p><button class="btn secondary" onclick="community()">Volunteer</button></div>
-      <div class="card"><div class="icon">🚨</div><h3>Hisbah Patrol</h3><p>Stay out of trouble and obey local laws.</p><button class="btn dark" onclick="patrol()">Check patrols</button></div>
-    </div>
-    <div class="sectiontitle">📖 Life Journal</div>
-    <div class="panel log" id="socialLog"></div>
-  </section>
-  <section class="page" id="profile">
-    <div class="sectiontitle">👤 Player Profile</div>
-    <div class="panel">
-      <label for="playerName">Character name</label>
-      <input id="playerName" maxlength="24" placeholder="Enter your name">
-      <label for="origin">Starting lifestyle</label>
-      <select id="origin">
-        <option value="lapo">Lapo — Start from the bottom</option>
-        <option value="nepo">Nepo — Wealthy background</option>
-      </select>
-      <button class="btn" onclick="saveProfile()">Save profile</button>
-    </div>
-    <div class="sectiontitle">💾 Save Game</div>
-    <div class="grid">
-      <div class="card"><div class="icon">💾</div><h3>Save Progress</h3><p>Save your current game on this device.</p><button class="btn" onclick="saveGame()">Save game</button></div>
-      <div class="card"><div class="icon">📥</div><h3>Load Progress</h3><p>Restore a previously saved game.</p><button class="btn secondary" onclick="loadGame()">Load game</button></div>
-      <div class="card"><div class="icon">🔄</div><h3>New Life</h3><p>Start over. This will erase your current progress.</p><button class="btn dark" onclick="newGame()">Start over</button></div>
-    </div>
-    <div class="sectiontitle">🏆 Achievements</div>
-    <div class="panel log" id="achievements"></div>
-    <footer>
-      KANO LIFE · YOUR LIFE. YOUR CITY. YOUR STORY.<br><br>
-      Created by Umar Abubakar Faruk · Game Developer<br>
-      Original fan-made life-simulation project.
-    </footer>
-  </section>
+
+  <footer>
+    KANO LIFE<br>
+    Created by Umar Abubakar Faruk · Game Developer
+  </footer>
+
 </main>
-<nav class="tabs">
-  <button class="tab active" data-page="home" onclick="go('home')"><span>🏠</span>Home</button>
-  <button class="tab" data-page="jobs" onclick="go('jobs')"><span>💼</span>Jobs</button>
-  <button class="tab" data-page="house" onclick="go('house')"><span>🏡</span>House</button>
-  <button class="tab" data-page="market" onclick="go('market')"><span>🛒</span>Market</button>
-  <button class="tab" data-page="city" onclick="go('city')"><span>🗺️</span>City</button>
-  <button class="tab" data-page="profile" onclick="go('profile')"><span>👤</span>Profile</button>
-</nav>
+
 <script>
-"use strict";
-const KEY="kanoLifeSave_v1";
-const initialState=()=>({
-  cash:2000000, energy:100, hunger:100, mood:100, health:100,
-  xp:0, level:1, home:0, homeLevel:1, homeUpgrades:[],
-  vehicles:[], job:"Unemployed", name:"Umar", origin:"lapo",
-  location:"Nassarawa GRA", visited:[], wanted:0, bailCount:0,
-  rentDays:7, day:1, achievements:[], activities:[],
-  lastRentDay:1, fines:0
-});
-let S=initialState();
-const jobs=[
-  {name:"Shop Assistant",icon:"🛍️",pay:12000,cost:12,desc:"Help customers at a local shop."},
-  {name:"Delivery Rider",icon:"🏍️",pay:18000,cost:20,desc:"Deliver packages around Kano."},
-  {name:"Taxi Driver",icon:"🚕",pay:25000,cost:22,desc:"Transport passengers across the city.",vehicle:true},
-  {name:"Market Trader",icon:"📦",pay:16000,cost:14,desc:"Buy and sell everyday goods."},
-  {name:"Office Worker",icon:"💻",pay:30000,cost:15,desc:"Complete a day of office work."},
-  {name:"Software Developer",icon:"👨‍💻",pay:65000,cost:18,desc:"Build digital products and applications."}
-];
-const homes=[
-  {name:"Family Compound",icon:"🏘️",price:0,rent:5000,desc:"A simple place to begin."},
-  {name:"Sabon Gari Apartment",icon:"🏢",price:450000,rent:12000,desc:"A comfortable city apartment."},
-  {name:"Modern Kano Flat",icon:"🏬",price:1500000,rent:25000,desc:"A modern home with extra comfort."},
-  {name:"Luxury Villa",icon:"🏡",price:5000000,rent:65000,desc:"A spacious luxury residence."},
-  {name:"Nassarawa Mansion",icon:"🏰",price:15000000,rent:150000,desc:"A premium residence for the wealthy."}
-];
-const foods=[
-  {name:"Water",icon:"💧",price:500,hunger:8,energy:3,desc:"Stay hydrated."},
-  {name:"Bread & Tea",icon:"🍞",price:1500,hunger:15,energy:8,desc:"A quick breakfast."},
-  {name:"Masa & Tea",icon:"🥞",price:2500,hunger:24,energy:12,desc:"A local favourite."},
-  {name:"Jollof Rice",icon:"🍛",price:4000,hunger:35,energy:18,desc:"A filling meal."},
-  {name:"Tuwo & Miyan Kuka",icon:"🥣",price:5000,hunger:45,energy:22,desc:"A traditional Kano meal."},
-  {name:"Restaurant Buffet",icon:"🍽️",price:12000,hunger:65,energy:30,desc:"A premium meal."}
-];
-const vehicles=[
-  {name:"Bicycle",icon:"🚲",price:25000,desc:"Cheap and simple transport."},
-  {name:"Motorcycle",icon:"🏍️",price:180000,desc:"Get around town quickly."},
-  {name:"Keke Napep",icon:"🛺",price:350000,desc:"Three-wheel city transport."},
-  {name:"Used Sedan",icon:"🚗",price:2500000,desc:"Your first personal car."},
-  {name:"SUV",icon:"🚙",price:7500000,desc:"Comfortable and spacious."},
-  {name:"Luxury Car",icon:"🏎️",price:25000000,desc:"A premium ride."}
-];
-const locations=[
-  {name:"Nassarawa GRA",icon:"🏘️",cost:500,desc:"Upscale residential district."},
-  {name:"Sabon Gari",icon:"🏙️",cost:500,desc:"Busy streets and businesses."},
-  {name:"Kurmi Market",icon:"🛍️",cost:800,desc:"Explore traditional commerce."},
-  {name:"Singer Market",icon:"📦",cost:700,desc:"A bustling trading area."},
-  {name:"Zoo Road",icon:"🌳",cost:700,desc:"A lively part of the city."},
-  {name:"Kano City Centre",icon:"🏛️",cost:500,desc:"Discover city life and landmarks."},
-  {name:"Motor Park",icon:"🚌",cost:900,desc:"Transport connections across town."},
-  {name:"Tea & Snacks",icon:"🫖",cost:300,desc:"Take a break and recharge."}
-];
-const upgrades=[
-  {name:"Paint & Decoration",icon:"🎨",price:25000,desc:"Make your home look better."},
-  {name:"Better Furniture",icon:"🛋️",price:65000,desc:"Improve your comfort."},
-  {name:"Generator",icon:"⚡",price:180000,desc:"Reliable backup power."},
-  {name:"Air Conditioning",icon:"❄️",price:250000,desc:"Keep the house cool."},
-  {name:"Solar Power",icon:"☀️",price:550000,desc:"Reduce future power costs."},
-  {name:"Security System",icon:"🔒",price:300000,desc:"Improve home security."}
-];
-function money(n){
-  return "₦"+Math.floor(n).toLocaleString("en-NG");
+const SAVE_KEY = "kanoLifeVisibleHouse";
+
+let game = {
+  cash: 2000000,
+  level: 1
+};
+
+const upgrades = {
+  1: {
+    name: "MY FAMILY HOUSE",
+    description: "Level 1: A family house with a yard.",
+    price: 100000
+  },
+  2: {
+    name: "MODERN HOUSE",
+    description: "Level 2: A larger house with improved walls and roofing.",
+    price: 250000
+  },
+  3: {
+    name: "LUXURY HOME",
+    description: "Level 3: A wider, more luxurious residence.",
+    price: 500000
+  },
+  4: {
+    name: "EXECUTIVE MANSION",
+    description: "Level 4: An executive home with premium finishes.",
+    price: 1000000
+  },
+  5: {
+    name: "KANO ROYAL VILLA",
+    description: "Level 5: Your highest-tier residence.",
+    price: 0
+  }
+};
+
+function formatMoney(value) {
+  return "₦" + value.toLocaleString("en-NG");
 }
-function clamp(n,min=0,max=100){
-  return Math.max(min,Math.min(max,n));
+
+function render() {
+  document.getElementById("cash").textContent =
+    formatMoney(game.cash);
+
+  document.getElementById("level").textContent =
+    "Level " + game.level + " / 5";
+
+  document.getElementById("houseLabel").textContent =
+    upgrades[game.level].name;
+
+  document.getElementById("description").textContent =
+    upgrades[game.level].description;
+
+  const yard = document.getElementById("yard");
+
+  yard.classList.remove(
+    "level2", "level3", "level4", "level5"
+  );
+
+  if (game.level >= 2) {
+    yard.classList.add("level" + game.level);
+  }
+
+  const button = document.getElementById("upgradeButton");
+
+  if (game.level >= 5) {
+    button.textContent = "🏆 MAXIMUM HOUSE LEVEL";
+    button.disabled = true;
+  } else {
+    button.disabled = false;
+    button.textContent =
+      "Upgrade House — " +
+      formatMoney(upgrades[game.level].price);
+  }
 }
-function toast(msg){
-  const t=document.getElementById("toast");
-  t.textContent=msg;t.style.display="block";
-  clearTimeout(toast.timer);
-  toast.timer=setTimeout(()=>t.style.display="none",2600);
-}
-function log(msg){
-  S.activities.unshift({msg,day:S.day});
-  S.activities=S.activities.slice(0,35);
-  renderLogs();
-}
-function canAfford(price){
-  if(S.cash<price){toast("Not enough money! You need "+money(price-S.cash)+" more.");return false;}
-  return true;
-}
-function spend(price){
-  if(!canAfford(price))return false;
-  S.cash-=price;return true;
-}
-function gain(amount){
-  S.cash+=amount;
-}
-function go(page){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.page===page));
-  document.getElementById(page).classList.add("active");
+
+function upgradeHouse() {
+  if (game.level >= 5) {
+    showMessage("Your house is already fully upgraded!");
+    return;
+  }
+
+  const price = upgrades[game.level].price;
+
+  if (game.cash < price) {
+    showMessage("You don't have enough money for this upgrade.");
+    return;
+  }
+
+  game.cash -= price;
+  game.level++;
+
   render();
-  window.scrollTo({top:0,behavior:"smooth"});
+  saveGame(true);
+
+  showMessage(
+    "Congratulations! Your house is now level " +
+    game.level + "!"
+  );
 }
-function work(i){
-  const j=jobs[i];
-  if(S.energy<j.cost){toast("You are too tired. Rest or eat first.");return;}
-  if(S.hunger<10){toast("You are too hungry to work. Buy some food.");return;}
-  if(j.vehicle&&!S.vehicles.some(v=>v==="Motorcycle"||v==="Keke Napep"||v==="Used Sedan"||v==="SUV"||v==="Luxury Car")){
-    toast("This job requires a motorcycle or car.");return;
-  }
-  S.energy=clamp(S.energy-j.cost);
-  S.hunger=clamp(S.hunger-8);
-  S.mood=clamp(S.mood-3);
-  gain(j.pay);
-  S.xp+=25;
-  S.job=j.name;
-  while(S.xp>=S.level*100){S.xp-=S.level*100;S.level++;toast("Level up! You reached level "+S.level+"!");}
-  log("Worked as "+j.name+" and earned "+money(j.pay)+".");
-  checkAchievements();
-  saveGame(true);render();
-  toast("Work completed! You earned "+money(j.pay)+".");
-}
-function eat(i){
-  const f=foods[i];
-  if(!spend(f.price))return;
-  S.hunger=clamp(S.hunger+f.hunger);
-  S.energy=clamp(S.energy+f.energy);
-  S.health=clamp(S.health+2);
-  log("Bought "+f.name+" for "+money(f.price)+".");
-  saveGame(true);render();toast("Enjoy your meal!");
-}
-function upgradeHome(){
-  if(S.homeLevel>=10){toast("Your home is already at maximum level!");return;}
-  const price=S.homeLevel*50000+25000;
-  if(!spend(price))return;
-  S.homeLevel++;
-  S.mood=clamp(S.mood+8);
-  S.homeUpgrades.push("Home Level "+S.homeLevel);
-  log("Upgraded your home to level "+S.homeLevel+" for "+money(price)+".");
-  checkAchievements();saveGame(true);render();
-  toast("Home upgraded! Level "+S.homeLevel);
-}
-function buyHome(i){
-  if(i===S.home){toast("You already live here.");return;}
-  const h=homes[i];
-  if(!spend(h.price))return;
-  S.home=i;S.homeLevel=1;S.homeUpgrades=[];
-  S.mood=clamp(S.mood+10);
-  log("Moved into "+h.name+".");
-  saveGame(true);render();toast("Congratulations on your new home!");
-}
-function buyUpgrade(i){
-  const u=upgrades[i];
-  if(S.homeUpgrades.includes(u.name)){toast("You already own this upgrade.");return;}
-  if(!spend(u.price))return;
-  S.homeUpgrades.push(u.name);
-  if(u.name==="Better Furniture")S.mood=clamp(S.mood+10);
-  if(u.name==="Generator"||u.name==="Solar Power")S.mood=clamp(S.mood+5);
-  log("Installed "+u.name+" at home.");
-  checkAchievements();saveGame(true);render();toast(u.name+" installed!");
-}
-function buyVehicle(i){
-  const v=vehicles[i];
-  if(S.vehicles.includes(v.name)){toast("You already own this vehicle.");return;}
-  if(!spend(v.price))return;
-  S.vehicles.push(v.name);
-  log("Purchased a "+v.name+" for "+money(v.price)+".");
-  checkAchievements();saveGame(true);render();toast("Vehicle purchased!");
-}
-function travel(i){
-  const l=locations[i];
-  if(S.location===l.name){toast("You are already at "+l.name+".");return;}
-  if(S.energy<5){toast("You are too tired to travel. Rest first.");return;}
-  if(!spend(l.cost))return;
-  S.energy=clamp(S.energy-5);
-  S.location=l.name;
-  S.visited.push(l.name);
-  log("Travelled to "+l.name+".");
-  if(l.name==="Tea & Snacks"){
-    S.energy=clamp(S.energy+12);S.mood=clamp(S.mood+5);
-  }
-  checkAchievements();saveGame(true);render();
-  toast("You arrived at "+l.name+".");
-}
-function party(){
-  if(!spend(15000))return;
-  S.mood=clamp(S.mood+25);
-  S.energy=clamp(S.energy-8);
-  log("Attended a social party. Your mood improved.");
-  saveGame(true);render();toast("That was fun!");
-}
-function relax(){
-  if(!spend(2000))return;
-  S.energy=clamp(S.energy+12);S.mood=clamp(S.mood+8);
-  log("Relaxed with tea and snacks.");
-  saveGame(true);render();toast("You feel more relaxed.");
-}
-function community(){
-  S.energy=clamp(S.energy-5);S.mood=clamp(S.mood+12);S.xp+=10;
-  log("Volunteered in your community.");
-  saveGame(true);render();toast("Your community appreciates you!");
-}
-function patrol(){
-  if(S.wanted<=0){
-    toast("No active encounter. Stay safe and obey local laws.");
-    log("Checked local patrol information. No encounter.");
-    render();return;
-  }
-  const bail=25000*S.wanted;
-  if(confirm("You have an active wanted level of "+S.wanted+". Pay "+money(bail)+" bail?")){
-    if(spend(bail)){S.wanted=0;S.bailCount++;log("Paid "+money(bail)+" bail.");toast("You are free to continue.");}
-  }else{
-    toast("Avoid trouble and try again later.");
-  }
-  saveGame(true);render();
-}
-function saveProfile(){
-  const n=document.getElementById("playerName").value.trim();
-  if(n)S.name=n.slice(0,24);
-  const origin=document.getElementById("origin").value;
-  if(origin!==S.origin){
-    if(!confirm("Changing your background starts a new character. Continue?")){
-      document.getElementById("origin").value=S.origin;return;
+
+function saveGame(silent = false) {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(game));
+
+    if (!silent) {
+      showMessage("Your house and money have been saved!");
     }
-    S=initialState();S.origin=origin;
-    if(origin==="nepo"){S.cash=10000000;S.home=2;S.vehicles=["Motorcycle"];}
+  } catch (error) {
+    showMessage("Unable to save. Check your browser settings.");
   }
-  log("Profile saved.");
-  saveGame(true);render();toast("Profile updated!");
 }
-function saveGame(silent=false){
-  try{
-    localStorage.setItem(KEY,JSON.stringify(S));
-    if(!silent)toast("Game saved on this device.");
-  }catch(e){toast("Unable to save. Check your browser storage settings.");}
-}
-function loadGame(){
-  try{
-    const raw=localStorage.getItem(KEY);
-    if(!raw){toast("No saved game found on this device.");return;}
-    const data=JSON.parse(raw);
-    if(!data||typeof data.cash!=="number"||!Array.isArray(data.vehicles))throw Error("Invalid save");
-    S={...initialState(),...data};
-    render();toast("Saved game loaded!");
-  }catch(e){toast("Could not load your saved game.");}
-}
-function newGame(){
-  if(!confirm("Start a new life? Your saved progress on this device will be replaced."))return;
-  S=initialState();saveGame(true);render();go("home");toast("Your new life begins!");
-}
-function checkAchievements(){
-  const list=[
-    ["first_job",S.activities.some(a=>a.msg.includes("Worked as")),"First Paycheck"],
-    ["rich",S.cash>=5000000,"Millionaire in the Making"],
-    ["traveller",new Set(S.visited).size>=5,"Kano Explorer"],
-    ["home",S.homeLevel>=5,"Home Improver"],
-    ["car",S.vehicles.some(v=>["Used Sedan","SUV","Luxury Car"].includes(v)),"Car Owner"]
-  ];
-  for(const [id,condition,title] of list){
-    if(condition&&!S.achievements.includes(id)){
-      S.achievements.push(id);log("Achievement unlocked: "+title+"!");
+
+function loadGame() {
+  try {
+    const saved = localStorage.getItem(SAVE_KEY);
+
+    if (!saved) {
+      showMessage("No saved house found yet.");
+      return;
     }
-  }
-}
-function renderLogs(){
-  const html=S.activities.slice(0,12).map(a=>"<div>📍 Day "+a.day+" — "+esc(a.msg)+"</div>").join("")||"<div>No activities yet.</div>";
-  document.getElementById("activity").innerHTML=html;
-  document.getElementById("socialLog").innerHTML=html;
-}
-function esc(s){
-  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-function render(){
-  document.getElementById("cash").textContent=money(S.cash);
-  document.getElementById("energy").textContent=S.energy+"%";
-  document.getElementById("hunger").textContent=S.hunger+"%";
-  document.getElementById("mood").textContent=S.mood+"%";
-  document.getElementById("health").textContent=S.health+"%";
-  document.getElementById("level").textContent="LEVEL "+S.level;
-  document.getElementById("playerLabel").textContent=S.name+" · "+S.location;
-  document.getElementById("homeName").textContent=homes[S.home].name;
-  document.getElementById("homeIcon").textContent=homes[S.home].icon;
-  document.getElementById("homeDesc").textContent=homes[S.home].desc;
-  document.getElementById("homeLevel").textContent="Home level "+S.homeLevel+" / 10";
-  document.getElementById("homeProgress").style.width=(S.homeLevel*10)+"%";
-  document.getElementById("houseArt").textContent=homes[S.home].icon;
-  document.getElementById("propertyTitle").textContent=homes[S.home].name;
-  document.getElementById("xp").textContent=S.xp+" XP";
-  document.getElementById("xpBar").style.width=(S.xp/(S.level*100)*100)+"%";
-  document.getElementById("careerText").textContent=S.job==="Unemployed"?"Complete jobs to start a career.":"Current career: "+S.job;
-  document.getElementById("playerName").value=S.name;
-  document.getElementById("origin").value=S.origin;
-  document.getElementById("notice").textContent="📍 "+S.location+" · Day "+S.day+" · "+(S.wanted?"Wanted level "+S.wanted:"Live your Kano story!");
-  document.getElementById("jobList").innerHTML=jobs.map((j,i)=>`
-    <div class="card"><div class="icon">${j.icon}</div><h3>${j.name}</h3>
-    <p>${j.desc}<br>Pay: <b>${money(j.pay)}</b><br>Energy: ${j.cost}%</p>
-    <button class="btn" onclick="work(${i})">Work now</button></div>`).join("");
-  document.getElementById("foodList").innerHTML=foods.map((f,i)=>`
-    <div class="card"><div class="icon">${f.icon}</div><h3>${f.name}</h3>
-    <p>${f.desc}<br>Fullness +${f.hunger}% · Energy +${f.energy}%</p>
-    <button class="btn" onclick="eat(${i})">Buy · ${money(f.price)}</button></div>`).join("");
-  document.getElementById("propertyList").innerHTML=homes.map((h,i)=>`
-    <div style="padding:13px 0;border-bottom:1px solid #eee">
-      <div class="row"><div><b>${h.icon} ${h.name}</b><div style="font-size:11px;color:#777;margin-top:4px">${h.desc}<br>Weekly upkeep: ${money(h.rent)}</div></div>
-      <button class="btn ${S.home===i?"secondary":""}" onclick="buyHome(${i})">${S.home===i?"Current":i===0?"Select":money(h.price)}</button></div>
-    </div>`).join("");
-  document.getElementById("upgradeList").innerHTML=upgrades.map((u,i)=>{
-    const owned=S.homeUpgrades.includes(u.name);
-    return `<div class="card"><div class="icon">${u.icon}</div><h3>${u.name}</h3><p>${u.desc}</p><button class="btn ${owned?"secondary":""}" ${owned?"disabled":""} onclick="buyUpgrade(${i})">${owned?"Installed":money(u.price)}</button></div>`;
-  }).join("");
-  document.getElementById("vehicleList").innerHTML=vehicles.map((v,i)=>{
-    const owned=S.vehicles.includes(v.name);
-    return `<div class="card"><div class="icon">${v.icon}</div><h3>${v.name}</h3><p>${v.desc}</p><button class="btn ${owned?"secondary":""}" ${owned?"disabled":""} onclick="buyVehicle(${i})">${owned?"Owned":money(v.price)}</button></div>`;
-  }).join("");
-  document.getElementById("myVehicles").innerHTML=S.vehicles.length?S.vehicles.map(v=>"<div style='padding:5px'>🚘 "+esc(v)+"</div>").join(""):"You haven't bought a vehicle yet.";
-  document.getElementById("mapSpots").innerHTML=locations.slice(0,6).map((l,i)=>`<button class="spot" onclick="travel(${i})"><span>${l.icon}</span>${l.name}</button>`).join("");
-  document.getElementById("locationList").innerHTML=locations.map((l,i)=>`
-    <div class="card"><div class="icon">${l.icon}</div><h3>${l.name}</h3><p>${l.desc}<br>Travel: ${money(l.cost)}</p>
-    <button class="btn ${S.location===l.name?"secondary":""}" onclick="travel(${i})">${S.location===l.name?"You are here":"Visit location"}</button></div>`).join("");
-  document.getElementById("achievements").innerHTML=S.achievements.length?S.achievements.map(a=>"<div>🏆 "+esc(({first_job:"First Paycheck",rich:"Millionaire in the Making",traveller:"Kano Explorer",home:"Home Improver",car:"Car Owner"})[a]||a)+"</div>").join(""):"No achievements yet. Start working, travelling and upgrading your life!";
-  renderLogs();
-}
-function updateClock(){
-  const now=new Date();
-  document.getElementById("clock").textContent=now.toLocaleTimeString("en-NG",{timeZone:"Africa/Lagos",hour12:true});
-  document.getElementById("date").textContent=now.toLocaleDateString("en-NG",{timeZone:"Africa/Lagos",day:"numeric",month:"short"});
-}
-function dailyUpdate(){
-  S.day++;
-  S.energy=clamp(S.energy+20);
-  S.hunger=clamp(S.hunger-8);
-  S.mood=clamp(S.mood-2);
-  if(S.day-S.lastRentDay>=7){
-    const rent=homes[S.home].rent;
-    if(S.home===0||S.homeUpgrades.includes("Solar Power")) {
-      if(S.home!==0)S.cash-=Math.floor(rent*.8);
-    }else{
-      S.cash-=rent;
+
+    const data = JSON.parse(saved);
+
+    if (
+      !data ||
+      !Number.isFinite(data.cash) ||
+      !Number.isInteger(data.level) ||
+      data.level < 1 ||
+      data.level > 5
+    ) {
+      throw new Error("Invalid save");
     }
-    S.lastRentDay=S.day;
-    if(S.cash<0){S.cash=0;S.mood=clamp(S.mood-10);log("You struggled to pay housing upkeep.");}
-    else log("Weekly housing upkeep paid: "+money(rent)+".");
+
+    game = data;
+    render();
+
+    showMessage("Your saved house has been loaded!");
+  } catch (error) {
+    showMessage("Could not load your saved house.");
   }
-  if(S.hunger<=0){S.health=clamp(S.health-10);S.energy=clamp(S.energy-10);log("You are starving. Find food soon!");}
-  if(S.energy<=0){S.health=clamp(S.health-5);}
-  saveGame(true);render();
 }
-updateClock();setInterval(updateClock,1000);
+
+function showMessage(text) {
+  document.getElementById("message").textContent = text;
+}
+
 render();
-if(localStorage.getItem(KEY)) {
-  // Load only when explicitly requested, to avoid overwriting a new session.
-  document.getElementById("notice").textContent="Welcome back! Use Profile → Load Progress to continue your saved game.";
-}
-setInterval(dailyUpdate,300000);
 </script>
+
 </body>
 </html>
